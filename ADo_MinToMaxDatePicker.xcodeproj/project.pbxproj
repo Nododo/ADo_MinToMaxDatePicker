@@ -15,6 +15,8 @@
 		1F6B36711BF0435B005F0D1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F6B366F1BF0435B005F0D1E /* LaunchScreen.storyboard */; };
 		1F6B367C1BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B367B1BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests.m */; };
 		1F6B36871BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B36861BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.m */; };
+		1F6B36981BF0439E005F0D1E /* ADo_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B36951BF0439E005F0D1E /* ADo_DateModel.m */; };
+		1F6B36991BF0439E005F0D1E /* ADo_MinToMaxDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B36971BF0439E005F0D1E /* ADo_MinToMaxDatePicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		1F6B36821BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ADo_MinToMaxDatePickerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F6B36861BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADo_MinToMaxDatePickerUITests.m; sourceTree = "<group>"; };
 		1F6B36881BF0435C005F0D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F6B36941BF0439E005F0D1E /* ADo_DateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADo_DateModel.h; sourceTree = "<group>"; };
+		1F6B36951BF0439E005F0D1E /* ADo_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADo_DateModel.m; sourceTree = "<group>"; };
+		1F6B36961BF0439E005F0D1E /* ADo_MinToMaxDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADo_MinToMaxDatePicker.h; sourceTree = "<group>"; };
+		1F6B36971BF0439E005F0D1E /* ADo_MinToMaxDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADo_MinToMaxDatePicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,10 @@
 				1F6B36651BF0435B005F0D1E /* AppDelegate.m */,
 				1F6B36671BF0435B005F0D1E /* ViewController.h */,
 				1F6B36681BF0435B005F0D1E /* ViewController.m */,
+				1F6B36941BF0439E005F0D1E /* ADo_DateModel.h */,
+				1F6B36951BF0439E005F0D1E /* ADo_DateModel.m */,
+				1F6B36961BF0439E005F0D1E /* ADo_MinToMaxDatePicker.h */,
+				1F6B36971BF0439E005F0D1E /* ADo_MinToMaxDatePicker.m */,
 				1F6B366A1BF0435B005F0D1E /* Main.storyboard */,
 				1F6B366D1BF0435B005F0D1E /* Assets.xcassets */,
 				1F6B366F1BF0435B005F0D1E /* LaunchScreen.storyboard */,
@@ -270,6 +280,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F6B36981BF0439E005F0D1E /* ADo_DateModel.m in Sources */,
+				1F6B36991BF0439E005F0D1E /* ADo_MinToMaxDatePicker.m in Sources */,
 				1F6B36691BF0435B005F0D1E /* ViewController.m in Sources */,
 				1F6B36661BF0435B005F0D1E /* AppDelegate.m in Sources */,
 				1F6B36631BF0435B005F0D1E /* main.m in Sources */,
