@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F6B36631BF0435B005F0D1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B36621BF0435B005F0D1E /* main.m */; };
+		1F6B36661BF0435B005F0D1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B36651BF0435B005F0D1E /* AppDelegate.m */; };
+		1F6B36691BF0435B005F0D1E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B36681BF0435B005F0D1E /* ViewController.m */; };
+		1F6B366C1BF0435B005F0D1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F6B366A1BF0435B005F0D1E /* Main.storyboard */; };
+		1F6B366E1BF0435B005F0D1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F6B366D1BF0435B005F0D1E /* Assets.xcassets */; };
+		1F6B36711BF0435B005F0D1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F6B366F1BF0435B005F0D1E /* LaunchScreen.storyboard */; };
+		1F6B367C1BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B367B1BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests.m */; };
+		1F6B36871BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B36861BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1F6B36781BF0435C005F0D1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F6B36561BF0435B005F0D1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F6B365D1BF0435B005F0D1E;
+			remoteInfo = ADo_MinToMaxDatePicker;
+		};
+		1F6B36831BF0435C005F0D1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F6B36561BF0435B005F0D1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F6B365D1BF0435B005F0D1E;
+			remoteInfo = ADo_MinToMaxDatePicker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1F6B365E1BF0435B005F0D1E /* ADo_MinToMaxDatePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ADo_MinToMaxDatePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F6B36621BF0435B005F0D1E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1F6B36641BF0435B005F0D1E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1F6B36651BF0435B005F0D1E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1F6B36671BF0435B005F0D1E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1F6B36681BF0435B005F0D1E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1F6B366B1BF0435B005F0D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1F6B366D1BF0435B005F0D1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1F6B36701BF0435B005F0D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1F6B36721BF0435B005F0D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F6B36771BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ADo_MinToMaxDatePickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F6B367B1BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADo_MinToMaxDatePickerTests.m; sourceTree = "<group>"; };
+		1F6B367D1BF0435C005F0D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F6B36821BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ADo_MinToMaxDatePickerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F6B36861BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADo_MinToMaxDatePickerUITests.m; sourceTree = "<group>"; };
+		1F6B36881BF0435C005F0D1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1F6B365B1BF0435B005F0D1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F6B36741BF0435C005F0D1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F6B367F1BF0435C005F0D1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1F6B36551BF0435B005F0D1E = {
+			isa = PBXGroup;
+			children = (
+				1F6B36601BF0435B005F0D1E /* ADo_MinToMaxDatePicker */,
+				1F6B367A1BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests */,
+				1F6B36851BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests */,
+				1F6B365F1BF0435B005F0D1E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1F6B365F1BF0435B005F0D1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1F6B365E1BF0435B005F0D1E /* ADo_MinToMaxDatePicker.app */,
+				1F6B36771BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests.xctest */,
+				1F6B36821BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1F6B36601BF0435B005F0D1E /* ADo_MinToMaxDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				1F6B36641BF0435B005F0D1E /* AppDelegate.h */,
+				1F6B36651BF0435B005F0D1E /* AppDelegate.m */,
+				1F6B36671BF0435B005F0D1E /* ViewController.h */,
+				1F6B36681BF0435B005F0D1E /* ViewController.m */,
+				1F6B366A1BF0435B005F0D1E /* Main.storyboard */,
+				1F6B366D1BF0435B005F0D1E /* Assets.xcassets */,
+				1F6B366F1BF0435B005F0D1E /* LaunchScreen.storyboard */,
+				1F6B36721BF0435B005F0D1E /* Info.plist */,
+				1F6B36611BF0435B005F0D1E /* Supporting Files */,
+			);
+			path = ADo_MinToMaxDatePicker;
+			sourceTree = "<group>";
+		};
+		1F6B36611BF0435B005F0D1E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1F6B36621BF0435B005F0D1E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1F6B367A1BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests */ = {
+			isa = PBXGroup;
+			children = (
+				1F6B367B1BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests.m */,
+				1F6B367D1BF0435C005F0D1E /* Info.plist */,
+			);
+			path = ADo_MinToMaxDatePickerTests;
+			sourceTree = "<group>";
+		};
+		1F6B36851BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1F6B36861BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.m */,
+				1F6B36881BF0435C005F0D1E /* Info.plist */,
+			);
+			path = ADo_MinToMaxDatePickerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1F6B365D1BF0435B005F0D1E /* ADo_MinToMaxDatePicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F6B368B1BF0435C005F0D1E /* Build configuration list for PBXNativeTarget "ADo_MinToMaxDatePicker" */;
+			buildPhases = (
+				1F6B365A1BF0435B005F0D1E /* Sources */,
+				1F6B365B1BF0435B005F0D1E /* Frameworks */,
+				1F6B365C1BF0435B005F0D1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ADo_MinToMaxDatePicker;
+			productName = ADo_MinToMaxDatePicker;
+			productReference = 1F6B365E1BF0435B005F0D1E /* ADo_MinToMaxDatePicker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1F6B36761BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F6B368E1BF0435C005F0D1E /* Build configuration list for PBXNativeTarget "ADo_MinToMaxDatePickerTests" */;
+			buildPhases = (
+				1F6B36731BF0435C005F0D1E /* Sources */,
+				1F6B36741BF0435C005F0D1E /* Frameworks */,
+				1F6B36751BF0435C005F0D1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F6B36791BF0435C005F0D1E /* PBXTargetDependency */,
+			);
+			name = ADo_MinToMaxDatePickerTests;
+			productName = ADo_MinToMaxDatePickerTests;
+			productReference = 1F6B36771BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1F6B36811BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F6B36911BF0435C005F0D1E /* Build configuration list for PBXNativeTarget "ADo_MinToMaxDatePickerUITests" */;
+			buildPhases = (
+				1F6B367E1BF0435C005F0D1E /* Sources */,
+				1F6B367F1BF0435C005F0D1E /* Frameworks */,
+				1F6B36801BF0435C005F0D1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F6B36841BF0435C005F0D1E /* PBXTargetDependency */,
+			);
+			name = ADo_MinToMaxDatePickerUITests;
+			productName = ADo_MinToMaxDatePickerUITests;
+			productReference = 1F6B36821BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1F6B36561BF0435B005F0D1E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = Nododo;
+				TargetAttributes = {
+					1F6B365D1BF0435B005F0D1E = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					1F6B36761BF0435C005F0D1E = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 1F6B365D1BF0435B005F0D1E;
+					};
+					1F6B36811BF0435C005F0D1E = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 1F6B365D1BF0435B005F0D1E;
+					};
+				};
+			};
+			buildConfigurationList = 1F6B36591BF0435B005F0D1E /* Build configuration list for PBXProject "ADo_MinToMaxDatePicker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1F6B36551BF0435B005F0D1E;
+			productRefGroup = 1F6B365F1BF0435B005F0D1E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1F6B365D1BF0435B005F0D1E /* ADo_MinToMaxDatePicker */,
+				1F6B36761BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests */,
+				1F6B36811BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1F6B365C1BF0435B005F0D1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F6B36711BF0435B005F0D1E /* LaunchScreen.storyboard in Resources */,
+				1F6B366E1BF0435B005F0D1E /* Assets.xcassets in Resources */,
+				1F6B366C1BF0435B005F0D1E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F6B36751BF0435C005F0D1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F6B36801BF0435C005F0D1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1F6B365A1BF0435B005F0D1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F6B36691BF0435B005F0D1E /* ViewController.m in Sources */,
+				1F6B36661BF0435B005F0D1E /* AppDelegate.m in Sources */,
+				1F6B36631BF0435B005F0D1E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F6B36731BF0435C005F0D1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F6B367C1BF0435C005F0D1E /* ADo_MinToMaxDatePickerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F6B367E1BF0435C005F0D1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F6B36871BF0435C005F0D1E /* ADo_MinToMaxDatePickerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1F6B36791BF0435C005F0D1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F6B365D1BF0435B005F0D1E /* ADo_MinToMaxDatePicker */;
+			targetProxy = 1F6B36781BF0435C005F0D1E /* PBXContainerItemProxy */;
+		};
+		1F6B36841BF0435C005F0D1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F6B365D1BF0435B005F0D1E /* ADo_MinToMaxDatePicker */;
+			targetProxy = 1F6B36831BF0435C005F0D1E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1F6B366A1BF0435B005F0D1E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F6B366B1BF0435B005F0D1E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1F6B366F1BF0435B005F0D1E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F6B36701BF0435B005F0D1E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1F6B36891BF0435C005F0D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1F6B368A1BF0435C005F0D1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1F6B368C1BF0435C005F0D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ADo_MinToMaxDatePicker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.VALVE.www.ADo-MinToMaxDatePicker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1F6B368D1BF0435C005F0D1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ADo_MinToMaxDatePicker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.VALVE.www.ADo-MinToMaxDatePicker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		1F6B368F1BF0435C005F0D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ADo_MinToMaxDatePickerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.VALVE.www.ADo-MinToMaxDatePickerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ADo_MinToMaxDatePicker.app/ADo_MinToMaxDatePicker";
+			};
+			name = Debug;
+		};
+		1F6B36901BF0435C005F0D1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ADo_MinToMaxDatePickerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.VALVE.www.ADo-MinToMaxDatePickerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ADo_MinToMaxDatePicker.app/ADo_MinToMaxDatePicker";
+			};
+			name = Release;
+		};
+		1F6B36921BF0435C005F0D1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ADo_MinToMaxDatePickerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.VALVE.www.ADo-MinToMaxDatePickerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ADo_MinToMaxDatePicker;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		1F6B36931BF0435C005F0D1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ADo_MinToMaxDatePickerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.VALVE.www.ADo-MinToMaxDatePickerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ADo_MinToMaxDatePicker;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1F6B36591BF0435B005F0D1E /* Build configuration list for PBXProject "ADo_MinToMaxDatePicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F6B36891BF0435C005F0D1E /* Debug */,
+				1F6B368A1BF0435C005F0D1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F6B368B1BF0435C005F0D1E /* Build configuration list for PBXNativeTarget "ADo_MinToMaxDatePicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F6B368C1BF0435C005F0D1E /* Debug */,
+				1F6B368D1BF0435C005F0D1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1F6B368E1BF0435C005F0D1E /* Build configuration list for PBXNativeTarget "ADo_MinToMaxDatePickerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F6B368F1BF0435C005F0D1E /* Debug */,
+				1F6B36901BF0435C005F0D1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1F6B36911BF0435C005F0D1E /* Build configuration list for PBXNativeTarget "ADo_MinToMaxDatePickerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F6B36921BF0435C005F0D1E /* Debug */,
+				1F6B36931BF0435C005F0D1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1F6B36561BF0435B005F0D1E /* Project object */;
+}
