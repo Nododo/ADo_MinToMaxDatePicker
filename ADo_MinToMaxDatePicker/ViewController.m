@@ -12,6 +12,7 @@
 
 @interface ViewController ()
 - (IBAction)showTheDatePicker:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end
 
@@ -37,8 +38,9 @@
     ADo_DateModel *max = [[ADo_DateModel alloc] initWithDate:[NSDate date] style:YEAR_MONTH_DAY];
     ADo_DateModel *min = [[ADo_DateModel alloc] initWithDate:date style:YEAR_MONTH_DAY];
     ADo_MinToMaxDatePicker *pick = [[ADo_MinToMaxDatePicker alloc] initWithMaxDate:max minDate:min];
+    __weak typeof(self) weakSelf = self;
     [pick showWithBlock:^(ADo_DateModel *model) {
-        NSLog(@"%@====%@=====%@",model.year,model.month,model.day);
+        weakSelf.dateLabel.text = [NSString stringWithFormat:@"%@年-%@月-%@日",model.year,model.month,model.day];
     }];
 }
 @end

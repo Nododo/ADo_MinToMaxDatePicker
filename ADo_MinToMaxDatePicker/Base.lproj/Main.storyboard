@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8p-Y9-q6Z">
-                                <rect key="frame" x="-75" y="-205" width="750" height="750"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8p-Y9-q6Z">
+                                <rect key="frame" x="250" y="120" width="100" height="100"/>
                                 <color key="backgroundColor" red="0.083414400499733921" green="1" blue="0.99501329265100469" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="3JO-se-FOu"/>
@@ -31,13 +31,29 @@
                                     <action selector="showTheDatePicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bc2-2N-Zcz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKI-aX-12p">
+                                <rect key="frame" x="0.0" y="270" width="600" height="50"/>
+                                <color key="backgroundColor" red="0.57011832720809874" green="1" blue="0.92126256112255245" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9Q1-2b-Xp5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="u8p-Y9-q6Z" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="Bwv-If-xnR"/>
                             <constraint firstItem="u8p-Y9-q6Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bC6-Y1-ZG6"/>
+                            <constraint firstItem="TKI-aX-12p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="g3I-UK-uUe"/>
+                            <constraint firstAttribute="trailing" secondItem="TKI-aX-12p" secondAttribute="trailing" id="rSg-1I-5vC"/>
+                            <constraint firstItem="TKI-aX-12p" firstAttribute="top" secondItem="u8p-Y9-q6Z" secondAttribute="bottom" constant="50" id="xpv-PM-8FM"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="TKI-aX-12p" id="DVj-nU-2gT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
