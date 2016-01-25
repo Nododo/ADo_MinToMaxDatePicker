@@ -14,8 +14,9 @@ typedef void(^DateBlock)(ADo_DateModel *model);
 @interface ADo_MinToMaxDatePicker : UIView
 
 //初始化对象  传两个日期  日期的style 必须一致  maxdate 必须大于 mindate
+//outDate 是否有已过期选项
 
-- (instancetype)initWithMaxDate:(ADo_DateModel *)maxDate minDate:(ADo_DateModel *)minDate;
+- (instancetype)initWithMaxDate:(ADo_DateModel *)maxDate minDate:(ADo_DateModel *)minDate outDate:(BOOL)outDate;
 
 //显示  点击确定  block把最终的日期传出来
 

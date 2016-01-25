@@ -11,16 +11,22 @@
 #define kScreenWidth ([UIScreen mainScreen].bounds.size.width)
 #define kScreenHeight ([UIScreen mainScreen].bounds.size.height)
 
+
 #define kDatePickerH 270.f
-#define kPaddingW 10.f
-#define kPaddingH 10.f
-#define kButtonW 40.f
-#define kButtonH 25.f
-static  float animationDuration = .3f;
-static  float initAlpha = .3f;
-static  float finalAlpha = .8f;
+#define kPaddingW    10.f
+#define kPaddingH    10.f
+#define kButtonW     50.f
+#define kButtonH     25.f
+
+static  float const animationDuration = .3f;
+static  float const initAlpha         = .3f;
+static  float const finalAlpha        = .8f;
+static  int const outDateYear         = 1970;
+static  int const clearDateYear       = 1971;
 
 @interface ADo_MinToMaxDatePicker ()<UIPickerViewDataSource,UIPickerViewDelegate>
+
+@property (nonatomic,assign)BOOL outOfDate;
 
 //数据部分
 @property (nonatomic,strong)ADo_DateModel *maxDate;
@@ -28,6 +34,7 @@ static  float finalAlpha = .8f;
 @property (nonatomic,strong)NSMutableArray *years;
 @property (nonatomic,strong)NSMutableArray *months;
 @property (nonatomic,strong)NSMutableArray *days;
+//用来传回日期
 @property (nonatomic,copy)DateBlock dateBlock;
 
 //保留处理的每个部分的index
@@ -75,13 +82,14 @@ static  float finalAlpha = .8f;
 
 //初始化
 
-- (instancetype)initWithMaxDate:(ADo_DateModel *)maxDate minDate:(ADo_DateModel *)minDate
+- (instancetype)initWithMaxDate:(ADo_DateModel *)maxDate minDate:(ADo_DateModel *)minDate outDate:(BOOL)outDate
 {
     NSAssert(maxDate.style == minDate.style , @"the model's style must be same");
     self = [super init];
     if (self) {
         self.maxDate = maxDate;
         self.minDate = minDate;
+        self.outOfDate = outDate;
         [self setup];
         [self configureData];
     }
@@ -107,6 +115,15 @@ static  float finalAlpha = .8f;
     [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
     [cancelBtn addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:cancelBtn];
+    
+    UIButton *outBtn = [[UIButton alloc] init];
+    outBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [outBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    outBtn.frame = CGRectMake(CGRectGetMidX(self.bounds) + kPaddingW - kButtonW / 2, kPaddingH, kButtonW, kButtonH);
+    [outBtn setTitle:@"清除" forState:UIControlStateNormal];
+    [outBtn addTarget:self action:@selector(cleanDate:) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:outBtn];
+    
     
     UIButton *confirmBtn = [[UIButton alloc] init];
     [confirmBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -145,18 +162,52 @@ static  float finalAlpha = .8f;
     NSDateFormatter *tempFormatter = [[NSDateFormatter alloc] init];
     DateStyle tempStyle = self.maxDate.style;
     NSString *finalStr;
-    if (tempStyle == YEAR_MONTH_DAY) {
-        [tempFormatter setDateFormat:@"yyyyMMdd"];
-        finalStr  = [NSString stringWithFormat:@"%d%02d%02d",[self.years[self.yearIndex] intValue],[self.months[self.monthIndex] intValue],[self.days[self.dayIndex] intValue]];
-    }else
-    {
-        [tempFormatter setDateFormat:@"yyyyMM"];
-        finalStr  = [NSString stringWithFormat:@"%d%02d",[self.years[self.yearIndex] intValue],[self.months[self.monthIndex] intValue]];
+    if (self.yearIndex == -1 && self.outOfDate == YES) {
+        if (tempStyle == YEAR_MONTH_DAY) {
+            [tempFormatter setDateFormat:@"yyyyMMdd"];
+            finalStr  = [NSString stringWithFormat:@"%d%02d%02d",outDateYear,1,1];
+        }else
+        {
+            [tempFormatter setDateFormat:@"yyyyMM"];
+            finalStr  = [NSString stringWithFormat:@"%d%02d",outDateYear,1];
+        }
+    }else {
+        if (tempStyle == YEAR_MONTH_DAY) {
+            [tempFormatter setDateFormat:@"yyyyMMdd"];
+            finalStr  = [NSString stringWithFormat:@"%d%02d%02d",[self.years[self.yearIndex] intValue],[self.months[self.monthIndex] intValue],[self.days[self.dayIndex] intValue]];
+        }else
+        {
+            [tempFormatter setDateFormat:@"yyyyMM"];
+            finalStr  = [NSString stringWithFormat:@"%d%02d",[self.years[self.yearIndex] intValue],[self.months[self.monthIndex] intValue]];
+        }
     }
     NSDate *finalDate = [tempFormatter dateFromString:finalStr];
     ADo_DateModel *finalModel = [[ADo_DateModel alloc] initWithDate:finalDate style:self.maxDate.style];
     if (self.dateBlock) {
         self.dateBlock(finalModel);
+    }
+    [self dismiss];
+}
+
+- (void)cleanDate:(UIButton *)btn
+{
+    
+    
+    NSDateFormatter *tempFormatter = [[NSDateFormatter alloc] init];
+    DateStyle tempStyle = self.maxDate.style;
+    NSString *finalStr;
+        if (tempStyle == YEAR_MONTH_DAY) {
+            [tempFormatter setDateFormat:@"yyyyMMdd"];
+            finalStr  = [NSString stringWithFormat:@"%d%02d%02d",clearDateYear,1,1];
+        }else
+        {
+            [tempFormatter setDateFormat:@"yyyyMM"];
+            finalStr  = [NSString stringWithFormat:@"%d%02d",clearDateYear,1];
+        }
+    NSDate *cleanDate = [tempFormatter dateFromString:finalStr];
+    ADo_DateModel *cleanModel = [[ADo_DateModel alloc] initWithDate:cleanDate style:self.maxDate.style];
+    if (self.dateBlock) {
+        self.dateBlock(cleanModel);
     }
     [self dismiss];
 }
@@ -225,6 +276,16 @@ static  float finalAlpha = .8f;
 {
     if (component == 0) {
         self.yearIndex = (int)row;
+        if (self.outOfDate == YES && row == 0) {
+            self.yearIndex = -1;
+            [self.months removeAllObjects];
+            [self.days removeAllObjects];
+            [pickerView reloadAllComponents];
+            [pickerView selectRow:0 inComponent:0 animated:YES];
+            return;
+        }
+        //如果选择年份 月份和日子都重新计算
+        self.monthIndex = 0;
         [self monthsFromYear:[self.years[self.yearIndex] intValue]];
         if (self.monthIndex >= self.months.count) {//暂时没有想到更好的处理办法 处理最大年份上一年 月数越界
             self.monthIndex = 0;
@@ -240,6 +301,14 @@ static  float finalAlpha = .8f;
         
     }else if (component == 1)
     {
+        if (self.outOfDate == YES && self.yearIndex == -1) {
+            self.yearIndex = -1;
+            [self.months removeAllObjects];
+            [self.days removeAllObjects];
+            [pickerView reloadAllComponents];
+            [pickerView selectRow:0 inComponent:0 animated:YES];
+            return;
+        }
         self.monthIndex = (int)row;
         [self monthsFromYear:[self.years[self.yearIndex] intValue]];
         [self daysFromYear:[self.years[self.yearIndex] intValue] andMonth:[self.months[self.monthIndex] intValue]];
@@ -249,9 +318,17 @@ static  float finalAlpha = .8f;
         }
     }else if (component == 2)
     {
+        if (self.outOfDate == YES && self.yearIndex == -1) {
+            self.yearIndex = -1;
+            [self.months removeAllObjects];
+            [self.days removeAllObjects];
+            [pickerView reloadAllComponents];
+            [pickerView selectRow:0 inComponent:0 animated:YES];
+            return;
+        }
         self.dayIndex = (int)row;
     }
-    [pickerView reloadAllComponents];
+    //    [pickerView reloadAllComponents];
 }
 
 //其他部分   取得年 月  日  准确数据   关键就这里   坑点就是最大日期和最小日期的月数和天数的计算
@@ -262,14 +339,23 @@ static  float finalAlpha = .8f;
     int minYear = [self.minDate.year intValue];
     NSAssert(maxYear >= minYear, @"maxDate.year can't smaller than minDate.year");
     
-    for (int i = minYear; i <= maxYear; i ++) {
+    //    for (int i = minYear; i <= maxYear; i ++) {
+    //        NSString *yearStr = [NSString stringWithFormat:@"%d年",i];
+    //        [self.years addObject:yearStr];
+    //    }
+    if (self.outOfDate == YES) {
+        [self.years addObject:@"已过期"];
+        self.yearIndex = -1;
+    }
+    for (int i = maxYear; i >= minYear; i --) {
         NSString *yearStr = [NSString stringWithFormat:@"%d年",i];
         [self.years addObject:yearStr];
     }
-    int minMonth = [self.minDate.month intValue];
     
-    [self monthsFromYear:minYear];
-    [self daysFromYear:minYear andMonth:minMonth];
+    int maxMonth = [self.maxDate.month intValue];
+    
+    [self monthsFromYear:maxYear];
+    [self daysFromYear:maxYear andMonth:maxMonth];
 }
 
 //获取年对应的月份
@@ -277,6 +363,9 @@ static  float finalAlpha = .8f;
 - (void)monthsFromYear:(int)year
 {
     [self.months removeAllObjects];
+    if (self.outOfDate == YES && self.yearIndex == -1) {
+        return;
+    }
     if ([self.maxDate.year intValue] == [self.minDate.year intValue]) {
         int maxMonth = [self.maxDate.month intValue];
         int minMonth = [self.minDate.month intValue];
@@ -309,15 +398,25 @@ static  float finalAlpha = .8f;
 
 - (void)daysFromYear:(int)year andMonth:(int)month
 {
+    if (self.outOfDate == YES && self.yearIndex == -1) {
+        [self.days removeAllObjects];
+        return;
+    }
     int maxYear = [self.maxDate.year intValue];
     int minYear = [self.minDate.year intValue];
     int maxMonth = [self.maxDate.month intValue];
     int minMonth = [self.minDate.month intValue];
     int maxDay = [self.maxDate.day intValue];
     int minDay = [self.minDate.day intValue];
-    
-    NSAssert(maxYear != 0 && maxMonth != 0 && maxDay != 0, @"wrong maxdate");
-    NSAssert(minYear != 0 && minMonth != 0 && minDay != 0, @"wrong minDate");
+    if (self.maxDate.style == YEAR_MONTH_DAY) {
+        
+        NSAssert(maxYear != 0 && maxMonth != 0 && maxDay != 0, @"wrong maxdate");
+        NSAssert(minYear != 0 && minMonth != 0 && minDay != 0, @"wrong minDate");
+    }else
+    {
+        NSAssert(maxYear != 0 && maxMonth != 0 , @"wrong maxdate");
+        NSAssert(minYear != 0 && minMonth != 0 , @"wrong minDate");
+    }
     
     if (maxYear == minYear && maxMonth == minMonth)
     {
@@ -411,16 +510,6 @@ static  float finalAlpha = .8f;
     for (int i = minDay; i <= maxDay; i++) {
         [self.days addObject:[NSString stringWithFormat:@"%02d日",i]];
     }
-}
-
-//处理日期   这里可以写成nsdate的分类
-
-- (NSDate *)dateFromString:(NSString *)string withFormat:(NSString *)format
-{
-    NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
-    [inputFormatter setDateFormat:format];
-    NSDate *date = [inputFormatter dateFromString:string];
-    return date;
 }
 
 @end
