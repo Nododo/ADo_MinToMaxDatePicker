@@ -19,10 +19,11 @@
 #define kButtonH     25.f
 
 static  float const animationDuration = .3f;
-static  float const initAlpha         = .3f;
-static  float const finalAlpha        = .8f;
+//static  float const initAlpha         = .3f;
+//static  float const finalAlpha        = .8f;
 static  int const outDateYear         = 1970;
 static  int const clearDateYear       = 1971;
+static  int const cancleDateYear      = 1972;
 
 @interface ADo_MinToMaxDatePicker ()<UIPickerViewDataSource,UIPickerViewDelegate>
 
@@ -45,6 +46,8 @@ static  int const clearDateYear       = 1971;
 //试图部分
 @property (nonatomic,weak)UIView *bottomView;
 @property (nonatomic,weak)UIPickerView *dateView;
+@property (nonatomic,weak)UIButton *outBtn;
+
 
 @end
 
@@ -101,8 +104,8 @@ static  int const clearDateYear       = 1971;
 - (void)setup
 {
     self.frame = WINDOW.bounds;
-    self.backgroundColor = [UIColor blackColor];
-    self.alpha = initAlpha;
+    self.backgroundColor = [UIColor whiteColor];
+    //    self.alpha = initAlpha;
     UIView *bottomView = [[UIView alloc] init];
     bottomView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kDatePickerH);
     bottomView.backgroundColor = [UIColor whiteColor];
@@ -118,17 +121,20 @@ static  int const clearDateYear       = 1971;
     
     UIButton *outBtn = [[UIButton alloc] init];
     outBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [outBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    outBtn.frame = CGRectMake(CGRectGetMidX(self.bounds) + kPaddingW - kButtonW / 2, kPaddingH, kButtonW, kButtonH);
-    [outBtn setTitle:@"清除" forState:UIControlStateNormal];
-    [outBtn addTarget:self action:@selector(cleanDate:) forControlEvents:UIControlEventTouchUpInside];
+    //    outBtn.backgroundColor = kRandomColor;
+//    [outBtn setTitleColor:COLOR_GRAY_MARCROS forState:UIControlStateNormal];
+    outBtn.frame = CGRectMake(CGRectGetMaxX(cancelBtn.frame) + kPaddingW, kPaddingH, kScreenWidth - kPaddingW * 4 - kButtonW * 2, kButtonH);
+    //    [outBtn setTitle:@"清除" forState:UIControlStateNormal];
+    //    [outBtn addTarget:self action:@selector(cleanDate:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:outBtn];
+    self.outBtn = outBtn;
     
     
     UIButton *confirmBtn = [[UIButton alloc] init];
     [confirmBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     confirmBtn.frame = CGRectMake(kScreenWidth - kPaddingW - kButtonW, kPaddingH, kButtonW, kButtonH);
     [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
+//    [confirmBtn setTitleColor:COLOR_BLUE_MARCROS forState:UIControlStateNormal];
     [confirmBtn addTarget:self action:@selector(confirm:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:confirmBtn];
     
@@ -148,12 +154,30 @@ static  int const clearDateYear       = 1971;
     self.dateBlock = dateBlcok;
     [UIView animateWithDuration:animationDuration animations:^{
         self.bottomView.transform = CGAffineTransformMakeTranslation(0, -kDatePickerH);
-        self.alpha = finalAlpha;
+        //        self.alpha = finalAlpha;
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f];
     }];
 }
 
 - (void)cancel:(UIButton *)btn
 {
+    
+    NSDateFormatter *tempFormatter = [[NSDateFormatter alloc] init];
+    DateStyle tempStyle = self.maxDate.style;
+    NSString *finalStr;
+    if (tempStyle == YEAR_MONTH_DAY) {
+        [tempFormatter setDateFormat:@"yyyyMMdd"];
+        finalStr  = [NSString stringWithFormat:@"%d%02d%02d",cancleDateYear,1,1];
+    }else
+    {
+        [tempFormatter setDateFormat:@"yyyyMM"];
+        finalStr  = [NSString stringWithFormat:@"%d%02d",cancleDateYear,1];
+    }
+    NSDate *finalDate = [tempFormatter dateFromString:finalStr];
+    ADo_DateModel *finalModel = [[ADo_DateModel alloc] initWithDate:finalDate style:self.maxDate.style];
+    if (self.dateBlock) {
+        self.dateBlock(finalModel);
+    }
     [self dismiss];
 }
 
@@ -191,19 +215,17 @@ static  int const clearDateYear       = 1971;
 
 - (void)cleanDate:(UIButton *)btn
 {
-    
-    
     NSDateFormatter *tempFormatter = [[NSDateFormatter alloc] init];
     DateStyle tempStyle = self.maxDate.style;
     NSString *finalStr;
-        if (tempStyle == YEAR_MONTH_DAY) {
-            [tempFormatter setDateFormat:@"yyyyMMdd"];
-            finalStr  = [NSString stringWithFormat:@"%d%02d%02d",clearDateYear,1,1];
-        }else
-        {
-            [tempFormatter setDateFormat:@"yyyyMM"];
-            finalStr  = [NSString stringWithFormat:@"%d%02d",clearDateYear,1];
-        }
+    if (tempStyle == YEAR_MONTH_DAY) {
+        [tempFormatter setDateFormat:@"yyyyMMdd"];
+        finalStr  = [NSString stringWithFormat:@"%d%02d%02d",clearDateYear,1,1];
+    }else
+    {
+        [tempFormatter setDateFormat:@"yyyyMM"];
+        finalStr  = [NSString stringWithFormat:@"%d%02d",clearDateYear,1];
+    }
     NSDate *cleanDate = [tempFormatter dateFromString:finalStr];
     ADo_DateModel *cleanModel = [[ADo_DateModel alloc] initWithDate:cleanDate style:self.maxDate.style];
     if (self.dateBlock) {
@@ -338,24 +360,36 @@ static  int const clearDateYear       = 1971;
     int maxYear = [self.maxDate.year intValue];
     int minYear = [self.minDate.year intValue];
     NSAssert(maxYear >= minYear, @"maxDate.year can't smaller than minDate.year");
+    [self.years removeAllObjects];
+    [self.months removeAllObjects];
+    [self.days removeAllObjects];
     
-    //    for (int i = minYear; i <= maxYear; i ++) {
-    //        NSString *yearStr = [NSString stringWithFormat:@"%d年",i];
-    //        [self.years addObject:yearStr];
-    //    }
     if (self.outOfDate == YES) {
         [self.years addObject:@"已过期"];
         self.yearIndex = -1;
     }
-    for (int i = maxYear; i >= minYear; i --) {
-        NSString *yearStr = [NSString stringWithFormat:@"%d年",i];
-        [self.years addObject:yearStr];
+    //如果最大日期和最小日期都为0   return   解决比亚迪等过期车辆日期选择问题
+    if (maxYear == 0) {
+        return;
     }
-    
-    int maxMonth = [self.maxDate.month intValue];
-    
-    [self monthsFromYear:maxYear];
-    [self daysFromYear:maxYear andMonth:maxMonth];
+    if (self.inOrder) {
+        for (int i = minYear; i <= maxYear; i ++) {
+            NSString *yearStr = [NSString stringWithFormat:@"%d年",i];
+            [self.years addObject:yearStr];
+        }
+        int minMonth = [self.minDate.month intValue];
+        [self monthsFromYear:minYear];
+        [self daysFromYear:maxYear andMonth:minMonth];
+    }else {
+        for (int i = maxYear; i >= minYear; i --) {
+            NSString *yearStr = [NSString stringWithFormat:@"%d年",i];
+            [self.years addObject:yearStr];
+        }
+        int maxMonth = [self.maxDate.month intValue];
+        
+        [self monthsFromYear:maxYear];
+        [self daysFromYear:maxYear andMonth:maxMonth];
+    }
 }
 
 //获取年对应的月份
@@ -512,4 +546,20 @@ static  int const clearDateYear       = 1971;
     }
 }
 
+#pragma mark - 杂项设置...好烦...
+
+- (void)setInOrder:(BOOL)inOrder {
+    _inOrder = inOrder;
+    [self configureData];
+}
+
+
+- (void)setTitleName:(NSString *)titleName {
+    _titleName = titleName;
+    [self.outBtn setTitle:_titleName forState:UIControlStateNormal];
+}
+
+- (void)dealloc {
+    NSLog(@"日期选择销毁了");
+}
 @end
