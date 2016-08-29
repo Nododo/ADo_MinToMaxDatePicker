@@ -43,5 +43,6 @@ typedef void(^DateBlock)(ADo_DateModel *model);
 //标题栏名称
 @property (nonatomic,copy)NSString *titleName;
 
-
+//设置默认选中的日期
+- (void)setCurrentDate:(ADo_DateModel *)currentDatedate;
 @end

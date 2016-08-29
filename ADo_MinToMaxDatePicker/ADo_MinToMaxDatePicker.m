@@ -122,7 +122,7 @@ static  int const cancleDateYear      = 1972;
     UIButton *outBtn = [[UIButton alloc] init];
     outBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     //    outBtn.backgroundColor = kRandomColor;
-//    [outBtn setTitleColor:COLOR_GRAY_MARCROS forState:UIControlStateNormal];
+    //    [outBtn setTitleColor:COLOR_GRAY_MARCROS forState:UIControlStateNormal];
     outBtn.frame = CGRectMake(CGRectGetMaxX(cancelBtn.frame) + kPaddingW, kPaddingH, kScreenWidth - kPaddingW * 4 - kButtonW * 2, kButtonH);
     //    [outBtn setTitle:@"清除" forState:UIControlStateNormal];
     //    [outBtn addTarget:self action:@selector(cleanDate:) forControlEvents:UIControlEventTouchUpInside];
@@ -134,7 +134,7 @@ static  int const cancleDateYear      = 1972;
     [confirmBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     confirmBtn.frame = CGRectMake(kScreenWidth - kPaddingW - kButtonW, kPaddingH, kButtonW, kButtonH);
     [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
-//    [confirmBtn setTitleColor:COLOR_BLUE_MARCROS forState:UIControlStateNormal];
+    //    [confirmBtn setTitleColor:COLOR_BLUE_MARCROS forState:UIControlStateNormal];
     [confirmBtn addTarget:self action:@selector(confirm:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:confirmBtn];
     
@@ -541,8 +541,14 @@ static  int const cancleDateYear      = 1972;
 - (void)setDayArrayWithMinDay:(int)minDay maxDay:(int)maxDay
 {
     [self.days removeAllObjects];
-    for (int i = minDay; i <= maxDay; i++) {
-        [self.days addObject:[NSString stringWithFormat:@"%02d日",i]];
+    if (self.inOrder) { //正序
+        for (int i = minDay; i <= maxDay; i++) {
+            [self.days addObject:[NSString stringWithFormat:@"%02d日",i]];
+        }
+    } else { //倒叙
+        for (int i = maxDay; i >=minDay ; i--) {
+            [self.days addObject:[NSString stringWithFormat:@"%02d日",i]];
+        }
     }
 }
 
@@ -557,6 +563,37 @@ static  int const cancleDateYear      = 1972;
 - (void)setTitleName:(NSString *)titleName {
     _titleName = titleName;
     [self.outBtn setTitle:_titleName forState:UIControlStateNormal];
+}
+
+- (void)setCurrentDate:(ADo_DateModel *)currentDatedate {
+    for (int i = 0; i < self.years.count; i ++) {
+        
+        if ([[currentDatedate.year stringByAppendingString:@"年"] isEqualToString:self.years[i]]) {
+            self.yearIndex = i;
+            [self.dateView reloadAllComponents];
+            [self.dateView selectRow:i inComponent:0 animated:YES];
+            [self monthsFromYear:[self.years[self.yearIndex] intValue]];
+            for (int j = 0; j < self.months.count; j ++) {
+                if ([[currentDatedate.month stringByAppendingString:@"月"] isEqualToString:self.months[j]]) {
+                    self.monthIndex = j;
+                    [self.dateView reloadAllComponents];
+                    [self.dateView selectRow:j inComponent:1 animated:YES];
+                }
+            }
+            [self daysFromYear:[self.years[self.yearIndex] intValue] andMonth:[self.months[self.monthIndex] intValue]];
+            if (self.maxDate.style == YEAR_MONTH_DAY) {
+                for (int k = 0; k < self.days.count; k ++) {
+                    if ([[currentDatedate.day stringByAppendingString:@"日"] isEqualToString:self.days[k]]) {
+                        self.dayIndex = k;
+                        [self.dateView reloadAllComponents];
+                        [self.dateView selectRow:k inComponent:2 animated:YES];
+                    }
+                }
+            }
+            
+        }
+    }
+    
 }
 
 - (void)dealloc {
