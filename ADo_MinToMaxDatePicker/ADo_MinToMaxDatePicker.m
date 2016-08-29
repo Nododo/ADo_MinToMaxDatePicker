@@ -12,42 +12,39 @@
 #define kScreenHeight ([UIScreen mainScreen].bounds.size.height)
 
 
-#define kDatePickerH 270.f
-#define kPaddingW    10.f
-#define kPaddingH    10.f
-#define kButtonW     50.f
-#define kButtonH     25.f
+static  float const kDatePickerH      = 270.f;
+static  float const kPaddingW         = 10.f;
+static  float const kPaddingH         = 10.f;
+static  float const kButtonW          = 50.f;
+static  float const kButtonH          = 25.f;
 
 static  float const animationDuration = .3f;
-//static  float const initAlpha         = .3f;
-//static  float const finalAlpha        = .8f;
 static  int const outDateYear         = 1970;
 static  int const clearDateYear       = 1971;
 static  int const cancleDateYear      = 1972;
 
 @interface ADo_MinToMaxDatePicker ()<UIPickerViewDataSource,UIPickerViewDelegate>
 
-@property (nonatomic,assign)BOOL outOfDate;
+@property (nonatomic,assign) BOOL           outOfDate;
 
 //数据部分
-@property (nonatomic,strong)ADo_DateModel *maxDate;
-@property (nonatomic,strong)ADo_DateModel *minDate;
-@property (nonatomic,strong)NSMutableArray *years;
-@property (nonatomic,strong)NSMutableArray *months;
-@property (nonatomic,strong)NSMutableArray *days;
+@property (nonatomic,strong) ADo_DateModel  *maxDate;
+@property (nonatomic,strong) ADo_DateModel  *minDate;
+@property (nonatomic,strong) NSMutableArray *years;
+@property (nonatomic,strong) NSMutableArray *months;
+@property (nonatomic,strong) NSMutableArray *days;
 //用来传回日期
-@property (nonatomic,copy)DateBlock dateBlock;
+@property (nonatomic,copy  ) DateBlock      dateBlock;
 
 //保留处理的每个部分的index
-@property (nonatomic,assign)int yearIndex;
-@property (nonatomic,assign)int monthIndex;
-@property (nonatomic,assign)int dayIndex;
+@property (nonatomic,assign) int            yearIndex;
+@property (nonatomic,assign) int            monthIndex;
+@property (nonatomic,assign) int            dayIndex;
 
 //试图部分
-@property (nonatomic,weak)UIView *bottomView;
-@property (nonatomic,weak)UIPickerView *dateView;
-@property (nonatomic,weak)UIButton *outBtn;
-
+@property (nonatomic,weak  ) UIView         *bottomView;
+@property (nonatomic,weak  ) UIPickerView   *dateView;
+@property (nonatomic,weak  ) UIButton       *outBtn;
 
 @end
 
@@ -121,11 +118,7 @@ static  int const cancleDateYear      = 1972;
     
     UIButton *outBtn = [[UIButton alloc] init];
     outBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    //    outBtn.backgroundColor = kRandomColor;
-    //    [outBtn setTitleColor:COLOR_GRAY_MARCROS forState:UIControlStateNormal];
     outBtn.frame = CGRectMake(CGRectGetMaxX(cancelBtn.frame) + kPaddingW, kPaddingH, kScreenWidth - kPaddingW * 4 - kButtonW * 2, kButtonH);
-    //    [outBtn setTitle:@"清除" forState:UIControlStateNormal];
-    //    [outBtn addTarget:self action:@selector(cleanDate:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:outBtn];
     self.outBtn = outBtn;
     
@@ -134,7 +127,6 @@ static  int const cancleDateYear      = 1972;
     [confirmBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     confirmBtn.frame = CGRectMake(kScreenWidth - kPaddingW - kButtonW, kPaddingH, kButtonW, kButtonH);
     [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
-    //    [confirmBtn setTitleColor:COLOR_BLUE_MARCROS forState:UIControlStateNormal];
     [confirmBtn addTarget:self action:@selector(confirm:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:confirmBtn];
     
@@ -154,14 +146,12 @@ static  int const cancleDateYear      = 1972;
     self.dateBlock = dateBlcok;
     [UIView animateWithDuration:animationDuration animations:^{
         self.bottomView.transform = CGAffineTransformMakeTranslation(0, -kDatePickerH);
-        //        self.alpha = finalAlpha;
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f];
     }];
 }
 
 - (void)cancel:(UIButton *)btn
 {
-    
     NSDateFormatter *tempFormatter = [[NSDateFormatter alloc] init];
     DateStyle tempStyle = self.maxDate.style;
     NSString *finalStr;
@@ -280,18 +270,43 @@ static  int const cancleDateYear      = 1972;
     return 0;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+//- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    if (component == 0) {
+//        return self.years[row];
+//    }else if (component == 1)
+//    {
+//        return self.months[row];
+//    }else if (component == 2)
+//    {
+//        return self.days[row];
+//    }
+//    return nil;
+//}
+
+//replace the top method
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    UILabel *label = [[UILabel alloc] init];
+    label.textAlignment = NSTextAlignmentCenter;
     if (component == 0) {
-        return self.years[row];
+        label.text = self.years[row];
+        if (row == self.yearIndex) {
+            label.backgroundColor = [UIColor blueColor];
+        }
     }else if (component == 1)
     {
-        return self.months[row];
+        label.text = self.months[row];
+        if (row == self.monthIndex) {
+            label.backgroundColor = [UIColor cyanColor];
+        }
     }else if (component == 2)
     {
-        return self.days[row];
+        if (row == self.dayIndex) {
+            label.backgroundColor = [UIColor redColor];
+        }
+        label.text = self.days[row];
     }
-    return nil;
+    return label;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
@@ -337,6 +352,7 @@ static  int const cancleDateYear      = 1972;
         if (self.maxDate.style == YEAR_MONTH_DAY) {
             [pickerView reloadAllComponents];
             [pickerView selectRow:0 inComponent:2 animated:YES];
+            self.dayIndex = 0;
         }
     }else if (component == 2)
     {
@@ -350,7 +366,7 @@ static  int const cancleDateYear      = 1972;
         }
         self.dayIndex = (int)row;
     }
-    //    [pickerView reloadAllComponents];
+    [self.dateView reloadAllComponents];
 }
 
 //其他部分   取得年 月  日  准确数据   关键就这里   坑点就是最大日期和最小日期的月数和天数的计算
@@ -386,7 +402,6 @@ static  int const cancleDateYear      = 1972;
             [self.years addObject:yearStr];
         }
         int maxMonth = [self.maxDate.month intValue];
-        
         [self monthsFromYear:maxYear];
         [self daysFromYear:maxYear andMonth:maxMonth];
     }
@@ -567,7 +582,6 @@ static  int const cancleDateYear      = 1972;
 
 - (void)setCurrentDate:(ADo_DateModel *)currentDatedate {
     for (int i = 0; i < self.years.count; i ++) {
-        
         if ([[currentDatedate.year stringByAppendingString:@"年"] isEqualToString:self.years[i]]) {
             self.yearIndex = i;
             [self.dateView reloadAllComponents];
@@ -580,8 +594,8 @@ static  int const cancleDateYear      = 1972;
                     [self.dateView selectRow:j inComponent:1 animated:YES];
                 }
             }
-            [self daysFromYear:[self.years[self.yearIndex] intValue] andMonth:[self.months[self.monthIndex] intValue]];
             if (self.maxDate.style == YEAR_MONTH_DAY) {
+                [self daysFromYear:[self.years[self.yearIndex] intValue] andMonth:[self.months[self.monthIndex] intValue]];
                 for (int k = 0; k < self.days.count; k ++) {
                     if ([[currentDatedate.day stringByAppendingString:@"日"] isEqualToString:self.days[k]]) {
                         self.dayIndex = k;

@@ -33,12 +33,14 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyyMMdd"];
     NSString *datemin = @"20080706";
-    NSDate *date = [formatter dateFromString:datemin];
-    
-    ADo_DateModel *max = [[ADo_DateModel alloc] initWithDate:[NSDate date] style:YEAR_MONTH_DAY];
-    ADo_DateModel *min = [[ADo_DateModel alloc] initWithDate:date style:YEAR_MONTH_DAY];
+    NSString *datemax = @"20180706";
+    NSDate *minDate = [formatter dateFromString:datemin];
+    NSDate *maxDate = [formatter dateFromString:datemax];
+    ADo_DateModel *max = [[ADo_DateModel alloc] initWithDate:maxDate style:YEAR_MONTH_DAY];
+    ADo_DateModel *min = [[ADo_DateModel alloc] initWithDate:minDate style:YEAR_MONTH_DAY];
+    ADo_DateModel *current = [[ADo_DateModel alloc] initWithDate:[NSDate date] style:YEAR_MONTH_DAY];
     ADo_MinToMaxDatePicker *pick = [[ADo_MinToMaxDatePicker alloc] initWithMaxDate:max minDate:min outDate:YES];
-//    pick.outOfDate = YES;
+    [pick setCurrentDate:current];
     __weak typeof(self) weakSelf = self;
     [pick showWithBlock:^(ADo_DateModel *model) {
         weakSelf.dateLabel.text = [NSString stringWithFormat:@"%@年-%@月-%@日",model.year,model.month,model.day];

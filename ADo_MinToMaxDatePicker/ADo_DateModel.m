@@ -8,26 +8,29 @@
 
 #import "ADo_DateModel.h"
 
+static NSDateFormatter *adoFormatter = nil;
+
 @implementation ADo_DateModel
 
 - (instancetype)initWithDate:(NSDate *)date style:(DateStyle)style;
 {
     self = [super init];
     if (self) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        if (!adoFormatter) {
+            adoFormatter = [[NSDateFormatter alloc]init];
+        }
+        
         if (style == YEAR_MONTH_DAY) {
-            [formatter setDateFormat:@"yyyyMMdd"];
+            [adoFormatter setDateFormat:@"yyyyMMdd"];
         }else if (style == YEAR_MONTH_NONE)
         {
-            [formatter setDateFormat:@"yyyyMM"];
+            [adoFormatter setDateFormat:@"yyyyMM"];
         }
-        NSString *dateString = [formatter stringFromDate:date];
+        NSString *dateString = [adoFormatter stringFromDate:date];
         self.year     = [dateString substringWithRange:NSMakeRange(0, 4)];
         self.month    = [dateString substringWithRange:NSMakeRange(4, 2)];
         if (style == YEAR_MONTH_DAY) {
-            
             self.day = [dateString substringWithRange:NSMakeRange(6, 2)];
-            
         }else if (style == YEAR_MONTH_NONE)
         {
             self.day = nil;
