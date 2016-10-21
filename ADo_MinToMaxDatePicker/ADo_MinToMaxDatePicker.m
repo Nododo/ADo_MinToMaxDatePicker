@@ -419,29 +419,17 @@ static  int const cancleDateYear      = 1972;
         int maxMonth = [self.maxDate.month intValue];
         int minMonth = [self.minDate.month intValue];
         NSAssert(maxMonth >= minMonth, @"your maxDate and minDate should be exchange?");
-        for (int i = minMonth; i <= maxMonth; i ++) {
-            NSString *monthStr = [NSString stringWithFormat:@"%02d月",i];
-            [self.months addObject:monthStr];
-        }
+        [self setMonthArrayWithMinMonth:minMonth maxMonth:maxMonth];
     }else if (year == [self.maxDate.year intValue]) {
         int maxMonth = [self.maxDate.month intValue];
-        for (int i = 1; i <= maxMonth; i ++) {
-            NSString *monthStr = [NSString stringWithFormat:@"%02d月",i];
-            [self.months addObject:monthStr];
-        }
+        [self setMonthArrayWithMinMonth:1 maxMonth:maxMonth];
     }else if (year == [self.minDate.year intValue])
     {
         int minMonth = [self.minDate.month intValue];
-        for (int i = minMonth; i <= 12; i ++) {
-            NSString *monthStr = [NSString stringWithFormat:@"%02d月",i];
-            [self.months addObject:monthStr];
-        }
+        [self setMonthArrayWithMinMonth:minMonth maxMonth:12];
     }else
     {
-        for (int i = 1; i <= 12; i ++) {
-            NSString *monthStr = [NSString stringWithFormat:@"%02d月",i];
-            [self.months addObject:monthStr];
-        }
+        [self setMonthArrayWithMinMonth:1 maxMonth:12];
     }
 }
 
@@ -550,6 +538,22 @@ static  int const cancleDateYear      = 1972;
     }
 }
 
+
+//对月份进行排序：传入最大月和最小月，根据是否正序进行排序
+- (void)setMonthArrayWithMinMonth:(int)minMonth maxMonth:(int)maxMonth
+{
+    if (self.inOrder) { //正序
+        for (int i = minMonth; i <= maxMonth; i ++) {
+            NSString *monthStr = [NSString stringWithFormat:@"%02d月",i];
+            [self.months addObject:monthStr];
+        }
+    } else { //倒叙
+        for (int i = maxMonth; i >=minMonth ; i--) {
+            NSString *monthStr = [NSString stringWithFormat:@"%02d月",i];
+            [self.months addObject:monthStr];
+        }
+    }
+}
 
 //获取这个月的可以显示的天
 
